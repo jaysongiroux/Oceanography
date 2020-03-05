@@ -15,3 +15,7 @@
 ### UI:
 - sectioned off for topics/ sections for data
 
+### setup:
+npm i 
+npm start
+
