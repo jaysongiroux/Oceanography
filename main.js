@@ -1,5 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+require('electron-reload')(__dirname);
+
 const path = require('path')
 
 function createWindow () {

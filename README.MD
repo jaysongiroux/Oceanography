@@ -19,3 +19,8 @@
 npm i 
 npm start
 
+## Development
+### Tools
+- Add the link in the tools.html page then create a separate tool HTML and JS file. This will allow easy scalability for multiple tools in this program
+- include the navbar in each new html file you add
+

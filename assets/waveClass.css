@@ -1,0 +1,14 @@
+.waveOutput{
+    padding-bottom: 20px !important;
+    padding-top: 20px !important;
+}
+
+/*centering the container in the wave class page*/
+.container{
+    position: absolute;
+    width:700px;
+    left: 50%;
+    margin: 0px !important;
+    transform: translate(-50%, 0%);
+
+}
