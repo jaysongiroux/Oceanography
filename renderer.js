@@ -8,5 +8,5 @@
 
 //change project name in nav bar here
 let projectName = document.getElementById("projectName")
-projectName.innerText = "Oceans are cool"
+projectName.innerText = "Oceanography Toolbox"
 
