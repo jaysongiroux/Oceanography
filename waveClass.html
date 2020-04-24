@@ -39,14 +39,18 @@ Insparation: https://planetcalc.com/4406/
             <input placeholder="Depth (m)" id="Depth" type="text" class="validate">
             <label for="Depth">Depth (meters)</label>
         </div>
+<!--        <div class="col s4">-->
+<!--            <input placeholder="Gravity Acceleration" id="gav_acc" type="text" class="validate">-->
+<!--            <label for="gav_acc">Gravity Acceleration</label>-->
+<!--        </div>-->
         <div class="col s4">
-            <input placeholder="Gravity Acceleration" id="gav_acc" type="text" class="validate">
-            <label for="gav_acc">Gravity Acceleration</label>
+            <input placeholder="Wave Length" id="wave_Length" type="number" class="validate">
+            <label for="wave_Length">Wave Length</label>
         </div>
-        <div class="col s12">
-            <input placeholder="1" id="precision" type="number" class="validate">
-            <label for="precision">Number of Decimal places</label>
-        </div>
+<!--        <div class="col s6">-->
+<!--            <input placeholder="1" id="precision" type="number" class="validate">-->
+<!--            <label for="precision">Number of Decimal places</label>-->
+<!--        </div>-->
     </div>
 <!--submit button-->
     <div class="row">
@@ -62,21 +66,21 @@ Insparation: https://planetcalc.com/4406/
         <div class="col s4 waveOutput">
             <div id="RDcontainer">
                 <label>Relative Depth (classification)</label>
-                <h6 id="RDout"></h6>
+                <h6 id="RDout" style="height: 10px;"></h6>
 
             </div>
         </div>
-        <div class="col s4 waveOutput">
-            <div id="WLcontainer">
-                <label>Wavelength (meters)</label>
-                <h6 id="WLout"></h6>
+<!--        <div class="col s4 waveOutput">-->
+<!--            <div id="WLcontainer">-->
+<!--                <label>Wavelength (meters)</label>-->
+<!--                <h6 id="WLout" style="height: 10px;"></h6>-->
 
-            </div>
-        </div>
+<!--            </div>-->
+<!--        </div>-->
         <div class="col s4 waveOutput">
             <div id="AFcontainer">
                 <label>Angular Frequency (rad/s)</label>
-                <h6 id="AFout"></h6>
+                <h6 id="AFout" style="height: 10px;"></h6>
 
             </div>
         </div>
@@ -84,27 +88,94 @@ Insparation: https://planetcalc.com/4406/
         <div class="col s4 waveOutput">
             <div id="WNcontainer">
                 <label>Wavenumber</label>
-                <h6 id="WNout"></h6>
+                <h6 id="WNout" style="height: 10px;"></h6>
 
             </div>
         </div>
         <div class="col s4 waveOutput">
             <div id="PVcontainer">
-                <label>Phase Velocity</label>
-                <h6 id="PVout"></h6>
+                <label>Wave Velocity</label>
+                <h6 id="PVout" style="height: 10px;"></h6>
 
             </div>
         </div>
-        <div class="col s4 waveOutput">
-            <div id="GVcontainer">
-                <label>Group Velocity (m/s)</label>
-                <h6 id="GVout"></h6>
-            </div>
-        </div>
+<!--        <div class="col s4 waveOutput">-->
+<!--            <div id="GVcontainer">-->
+<!--                <label>Period</label>-->
+<!--                <h6 id="GVout" style="height: 10px;"></h6>-->
+<!--            </div>-->
+<!--        </div>-->
 
     </div>
+    <div class="row deep" id="deep" style="text-align: left">
+        <div class="col s12" style="text-align: center">
+            <h2>Deep Water Waves</h2>
+            <p> INFO</p>
+        </div>
+        <div class="col s12">
+            <h4>Calculations and Formulas</h4>
+            <h6>Classification</h6>
+            <p>If the depth is more than the wave length divided by 2, we can determine the wave is classified as a deep water wave</p>
+            <h6>Formulas</h6>
+            <p>
+                <li>Wave Number = 2𝛑/Wave Length</li>
+                <li>Wave Speed = √(Gravity Acceleration/ Wave Number)</li>
+                <li>Angular Frequency = 2*𝛑/Period</li>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row shallow" id="shallow" style="text-align: left">
+        <div class="col s12" style="text-align: center">
+            <h2>Shallow Water Waves</h2>
+            <p> INFO</p>
+        </div>
+        <div class="col s12">
+            <h4>Calculations and Formulas</h4>
+            <h6>Classification</h6>
+            <p>
+                When Depth is Less than wave Length /20 we can conclude this wave is a shallow water wave
+            </p>
+            <h6>Formulas</h6>
+            <p>
+            <li>Wave Number = 2𝛑/Wave Length</li>
+            <li>Wave Speed = √(Gravity Acceleration * Depth)</li>
+            <li>Angular Frequency = 2*𝛑/Period</li>
+            </p>
+        </div>
+    </div>
+
+    <div class="row trans"  id="trans" style="text-align: left">
+        <div class="col s12" style="text-align: center">
+            <h2>Transitional Waves</h2>
+            <p> INFO</p>
+        </div>
+        <div class="col s12">
+            <h4>Calculations and Formulas</h4>
+            <h6>Classification</h6>
+            <p>
+                When the depth is less than Wave Length /2 and depth is more than Wave Length/20 we can conclude this wave
+                is a transitional wave
+            </p>
+            <h6>Formulas</h6>
+            <p>
+            <li>Wave Number = 2𝛑/Wave Length</li>
+            <li>Wave Speed = √((Gravity Acceleration /Wave Number)*Tanh(Wave Number * Depth))</li>
+            <li>Angular Frequency = 2*𝛑/Period</li>
+            </p>
+        </div>
+    </div>
+
+
+
+
 
 </div>
+
+
+
+
 
 </body>
 </html>

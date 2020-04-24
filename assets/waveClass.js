@@ -7,33 +7,99 @@ function getValues(){
 }
 
 function waveClass(){
-    let period = document.getElementById("wave_period").value
-    let depth = document.getElementById("Depth").value
-    let g = document.getElementById("gav_acc").value
-    let prec = document.getElementById("precision").value
+    let period = document.getElementById("wave_period").value;
+    let depth = document.getElementById("Depth").value;
+    //gravity acceleration
+    let g = 9.8
+    //decimal places
+    let prec = 5
+    let waveLength = document.getElementById("wave_Length").value;
 
-    //wave length = lambda = 2pi/waveNumber
-    //wave number = k = 2pi/wavelength
-    //tanh(2*pi*depth/x*(grav*period)/(2*pi))
-    //todo: this is not working right. will come back to this.
-    let result = Math.tanh(2*Math.PI*depth*(g*period)/(2*Math.PI));
-    window.console.log(depth/result)
+    // let waveNumber = 2*Math.PI/waveLength;
+    // let amp = waveHeight/2;
+    // let angularFreq = 2*Math.PI/period;
+    // let angularFreq2 = 2*Math.PI*freq;
 
-    if ((depth/result)<.05)
-        window.console.log("shallow")
-    else if((depth/result)<.5)
-        window.console.log("trans")
-    else
-        window.console.log("deep")
-    // let result = Planetcalc.Calculate2809( { "x0":depth, "formula":"tanh(2*" + Math.PI.toString() + "*"+ depth.toString() +"/x)*(" + g.toString() + "*" + period.toString() + "*" + period.toString()+ ")/(2*" + Math.PI.toString() + ")", "prec":0.01} );
 
+    //key:
+    //depth: h
+    //waveLength = lambda
+    //waveNumber = k
+    //wave height = H
+    //amplitude = A
+    // period = T
+    //freq = italic f
+    //ang freq = fancy w
+    //wave speed = c
+
+    // DEEP
+    if(depth>waveLength/2)
+    {
+        window.console.log("deep");
+        let classcn = "deep";
+        document.getElementById("RDout").innerText = classcn;
+        let waveNumber = 2*Math.PI/waveLength;
+        let waveSpeed = Math.sqrt(g/waveNumber);
+        let period = Math.sqrt((2*Math.PI*waveLength)/g);
+        let angFreq = 2*Math.PI/period;
+
+        waveNumber = waveNumber.toFixed(prec);
+        waveSpeed = parseFloat(waveSpeed).toFixed(prec);
+        angFreq = angFreq.toFixed(prec);
+        document.getElementById("AFout").innerText = angFreq;
+        document.getElementById("WNout").innerText = waveNumber;
+        document.getElementById("PVout").innerText = waveSpeed;
+
+        document.getElementById("deep").style.display = "block";
+        document.getElementById("shallow").style.display = "none";
+        document.getElementById("trans").style.display = "none";
+    }
+    // shallow
+    else if(depth < waveLength/20)
+    {
+        window.console.log("shallow");
+        let classcn = "shallow";
+        document.getElementById("RDout").innerText = classcn;
+        let waveNumber = 2*Math.PI/waveLength;
+        let waveSpeed = Math.sqrt(g*depth);
+        let period = waveLength/waveSpeed;
+        let angFreq = 2*Math.PI / period;
+
+        waveNumber = waveNumber.toFixed(prec);
+        waveSpeed = parseFloat(waveSpeed).toFixed(prec);
+        angFreq = angFreq.toFixed(prec);
+
+        document.getElementById("AFout").innerText = angFreq;
+        document.getElementById("WNout").innerText = waveNumber;
+        document.getElementById("PVout").innerText = waveSpeed;
+
+        document.getElementById("deep").style.display = "none";
+        document.getElementById("shallow").style.display = "block";
+        document.getElementById("trans").style.display = "none";
+
+    }
+    //trans
+    else if(depth <waveLength/2 && depth > waveLength/20) {
+        window.console.log("trans");
+        let classcn = "trans";
+        document.getElementById("RDout").innerText = classcn;
+        let waveNumber = 2 * Math.PI / waveLength;
+        let w2 = g * waveNumber * Math.tanh(waveNumber * depth);
+        let angFreq = 2 * Math.PI / period;
+        // let waveLength = 2*Math.PI/waveNumber;
+        let waveSpeed = Math.sqrt((g / waveNumber) * Math.tanh(waveNumber * depth))
+
+        waveNumber = waveNumber.toFixed(prec);
+        waveSpeed = parseFloat(waveSpeed).toFixed(prec);
+        angFreq = angFreq.toFixed(prec);
+
+        document.getElementById("AFout").innerText = angFreq;
+        document.getElementById("WNout").innerText = waveNumber;
+        document.getElementById("PVout").innerText = waveSpeed;
+
+        document.getElementById("deep").style.display = "none";
+        document.getElementById("shallow").style.display = "none";
+        document.getElementById("trans").style.display = "block";
+    }
 
 }
-
-//if ( (depth/tL) < 0.05)
-// 	relativedepth.SetValue(names["shallow"]);
-// else if ((depth/tL) < 0.5)
-// 	relativedepth.SetValue(names["transitional"]);
-// else
-// 	relativedepth.SetValue(names["deep"]);
-// };

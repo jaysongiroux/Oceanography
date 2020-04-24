@@ -12,3 +12,15 @@
     transform: translate(-50%, 0%);
 
 }
+
+.deep{
+    display: none;
+}
+.shallow
+{
+    display: none;
+}
+.trans
+{
+    display: none;
+}
