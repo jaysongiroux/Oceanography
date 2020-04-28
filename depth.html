@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/materialize.css">
+    <script src="assets/materialize1.js"></script>
+    <script src="assets/depthSalinity.js"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="assets/plotly-latest.min.js"></script>
+
+    <title>Depth and Salinity Mapping</title>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#"  id="DEPTHMAP" class="brand-logo" style="padding-left: 10px">Oceanography Toolbox</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h3>
+                Depth or Salinity Mapping
+            </h3>
+            <P>
+                This tool allows you to enter depth or salinity measurements into a grid and visualize the area measured in a 3D space
+            </P>
+            <p>
+                If the table is too big for the space you are measuring, Please do not fill the cells in. This tool will automatically fill the empty cells with "0"
+            </p>
+        </div>
+        <div class="col s12">
+            <p>What are you messuring?</p>
+
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-trigger btn' id="drop" href='#' data-target='dropdown1'>Choose Salinity or Depth</a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!" onclick="Depth()">Depth</a></li>
+                <li><a href="#!" onclick="Salinity()">Salinity</a></li>
+            </ul>
+        </div>
+
+        <div class="con" id="con" style="display: none">
+            <div class="col s12">
+                <div class="spacer" style="height: 100px"></div>
+            </div>
+    <!--        x AXIS -->
+            <div class="col s3">
+    <!--            space holder-->
+                <div class="space" style="width: 100px;"></div>
+            </div>
+            <div class="col s9">
+                <h6 style="text-align: center" id="xAxis"></h6>
+                <div class="divider"></div>
+            </div>
+    <!--        Y AXIS START-->
+            <div class="col s3">
+                <h6 id="yAxis" style="text-align: right; margin: fill; height: 100%;"></h6>
+            </div>
+    <!--        CONTENT -->
+            <div class="col s9" id="inputGrid">
+                <div class="row">
+                    <table id="in">
+                        <tr>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                        </tr>
+                        <tr>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                            <td><div contenteditable style="border: 1px solid black"></div></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col s12">
+                <div id="sub" style="padding-top: 10px; padding-left: 100px; text-align: left" onclick="sub(document.getElementById('drop').innerText)">
+                    <br>
+                    <a class="waves-effect waves-light btn">Submit</a>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="chart" id="chart" style="display: inline"></div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems);
+
+    });
+    function Depth(){
+        document.getElementById("xAxis").innerText = "X(m)";
+        document.getElementById("yAxis").innerText = "Y(m)";
+        document.getElementById("con").style.display = "";
+        document.getElementById("drop").innerText="Depth";
+        let gr = document.getElementById("inputGrid");
+        document.getElementById("con").style.display = "inline";
+    }
+    function Salinity(){
+        document.getElementById("xAxis").innerText = "X(ppt)";
+        document.getElementById("yAxis").innerText = "Y(ppt)";
+        document.getElementById("drop").innerText="Salinity";
+        let gr = document.getElementById("inputGrid");
+        document.getElementById("con").style.display = "inline";
+    }
+    function sub(inp){
+        z1 = getData(inp);
+        if(document.getElementById("drop").innerText === "DEPTH"){
+            var data = [{
+                z: z1,
+                type: 'surface',
+                contours: {
+                    z: {
+                        show:true,
+                        usecolormap: true,
+                        highlightcolor:"#42f462",
+                        project:{z: true}
+                    }
+                }
+            }];
+
+            let layout = {
+                title: 'yes',
+            }
+
+
+            Plotly.newPlot('chart', data, layout);
+
+        }
+        else if(document.getElementById("drop").innerText === "SALINITY"){
+            var data = [{
+                z: z1,
+                type: 'heatmap',
+            }];
+
+
+            let layout = {
+                title: 'yes',
+
+            }
+
+
+            Plotly.newPlot('chart', data, layout);
+        }
+
+    }
+
+
+</script>
+</html>
