@@ -35,8 +35,8 @@ function waveClass(){
     // DEEP
     if(depth>waveLength/2)
     {
-        window.console.log("deep");
-        let classcn = "deep";
+        window.console.log("Deep");
+        let classcn = "Deep";
         document.getElementById("RDout").innerText = classcn;
         let waveNumber = 2*Math.PI/waveLength;
         let waveSpeed = Math.sqrt(g/waveNumber);
@@ -57,8 +57,8 @@ function waveClass(){
     // shallow
     else if(depth < waveLength/20)
     {
-        window.console.log("shallow");
-        let classcn = "shallow";
+        window.console.log("Shallow");
+        let classcn = "Shallow";
         document.getElementById("RDout").innerText = classcn;
         let waveNumber = 2*Math.PI/waveLength;
         let waveSpeed = Math.sqrt(g*depth);
@@ -80,8 +80,8 @@ function waveClass(){
     }
     //trans
     else if(depth <waveLength/2 && depth > waveLength/20) {
-        window.console.log("trans");
-        let classcn = "trans";
+        window.console.log("Trans");
+        let classcn = "Transitional";
         document.getElementById("RDout").innerText = classcn;
         let waveNumber = 2 * Math.PI / waveLength;
         let w2 = g * waveNumber * Math.tanh(waveNumber * depth);
