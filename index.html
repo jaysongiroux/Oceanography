@@ -21,16 +21,53 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" style="padding-left: 40px;">
       <div class="row">
         <div class="col s12">
-          <h1 id="title">Oceans</h1>
+          <h4 id="title">Welcome</h4>
         </div>
         <div class="col s12">
-
+          <h5 class="description"  id="info">Introduction</h5>
           <p id="description">This tool will be used to assist oceanography researchers by giving researchers an easy, yet powerful,
-            platform to enter data and output an intuitive document with the raw data and computer aided analysis.
+            platform to enter data and output an intuitive graphs and analysis for professional documentation and research papers.
           </p>
+        </div>
+        <div class="divider"></div>
+        <div class="col s12">
+          <h4>Tools</h4>
+          <h5>Wave Classification Tool</h5>
+          <h6>Features</h6>
+          <p>
+            This tool allows users to record just the Depth, Period and Wave Length and it will return the classification,
+            Angular Frequency, Wave number and wave velocity
+          </p>
+          <div class="row">
+            <div class="col s12">
+              <img src="waveclass.png" id="waveclass" style="padding-top:10px; display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 50%">
+              <label for="waveclass" style="display: block; text-align: center; padding-top: 10px">Wave Classification for a Deep Water Wave</label>
+            </div>
+          </div>
+
+          <br>
+          <h5>Depth and Salinity Mapping tool</h5>
+          <h6>Features</h6>
+          <p>
+            This tool allows you to input recorded information into the provided grid and have it turn into a beautiful
+            visualization of your data.
+
+          </p>
+          <div class="row">
+            <div class="col s6">
+              <img id="DepthMap" class="Depthmap" label="DepthMap" src="3d.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
+              <label for="DepthMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+            </div>
+            <div class="col s6">
+              <img id="heatMap" class="heatMap" label="heatMap" src="3dh.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
+              <label for="heatMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+            </div>
+          </div>
+
+
         </div>
     </div>
     </div>
