@@ -6,7 +6,7 @@
     <script src="assets/materialize1.js"></script>
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
     <!--<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
-    <title>oceans</title>
+    <title>Oceanography Tool Kit</title>
   </head>
   <body>
     <!--Menu bar initiazation -->
@@ -17,7 +17,7 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="index.html">Home</a></li>
             <li><a href="tools.html">Tools</a></li>
-            <li><a href="help.html">Help</a></li>
+            <li><a href="help.html">About</a></li>
           </ul>
         </div>
       </nav>
@@ -54,7 +54,7 @@
 
 
           <div class="row" id="tools">
-            <div class="col s12">
+            <!--<div class="col s12">
               <br>
                 <h5><b>Depth and Salinity Mapping tool V1</b></h5>
               <h6><b>Features</b></h6>
@@ -66,7 +66,7 @@
 
               </p>
 
-    <!--          Images for the tools -->
+    &lt;!&ndash;          Images for the tools &ndash;&gt;
               <div class="row">
                 <div class="col s6">
                   <img id="DepthMap" class="Depthmap" label="DepthMap" src="3d.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
@@ -78,23 +78,20 @@
                 </div>
               </div>
                 <br>
-              </div>
+              </div>-->
 
               <div class="col s12" id="v2">
-                <h5><b>Depth and Salinity Mapping tool V2</b></h5>
+                <h5><b>Data Mapping tool</b></h5>
               <h6><b>Features</b></h6>
                 <ul>
                   <li>
-                    - Allows the user to manually input data on a table that can be dyanmically adjusted in size.
+                    - Allows the user to manually input data on a table that can be dynamically adjusted in size.
                   </li>
                   <li>
                     - Allows the user to import a CSV File to be read and evaluated
                   </li>
                   <li>
-                    - Displays an interactive visual representation of the given data.
-                  </li>
-                  <li>
-                    - V2 of this tool was designed to be a more feature-rich version that allows the user to use manual entry or CSV files.
+                    - Displays an interactive visual representation of the given data and customize graph title, units and size.
                   </li>
             </ul>
 
@@ -103,11 +100,11 @@
               <div class="row">
                 <div class="col s6">
                   <img id="DepthMap" class="Depthmap" label="DepthMap" src="3d.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
-                  <label for="DepthMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+                  <label for="DepthMap" style="display: block; text-align: center;font-weight: bold; padding-top: 10px">Depth Map Visualization (Surface Plot)</label>
                 </div>
                 <div class="col s6">
                   <img id="heatMap" class="heatMap" label="heatMap" src="3dh.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
-                  <label for="heatMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+                  <label for="heatMap" style="display: block; text-align: center; padding-top: 10px; font-weight: bold">Depth Map Visualization (Heat Map)</label>
                 </div>
               </div>
 

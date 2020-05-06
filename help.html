@@ -1,27 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/materialize.css">
     <script src="assets/materialize1.js"></script>
-
-
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Help</title>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
+    <!--<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
+    <title>Oceanography Toolbox</title>
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" id="projectName" class="brand-logo">Oceans</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="tools.html">Tools</a></li>
-            <li><a href="help.html">Help</a></li>
-        </ul>
+<!--Menu bar initiazation -->
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#"  id="projectName" class="brand-logo" style="padding-left: 10px">Oceanography Toolbox</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="help.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="containerr" style="padding-left: 40px; padding-right: 40px;">
+    <div class="row">
+        <div class="col s12">
+            <h4 id="title" style="text-align: center"><b>Help Page</b></h4>
+        </div>
+        <div class="col s12">
+            <h4>Objective</h4>
+
+            Create a computer program that allows oceanographers and researchers to enter data on a user friendly UI that will parse the data (manually inputted or CSV File) and output the visualized data into an image that can be easily interpreted by the general public and other researchers.
+
+
+
+            <h4>Code Base:</h4>
+            The entirety of this toolkit was written on top of the electron framework using a combination of nodeJS libraries and react. While there are plenty of frameworks and languages that could have been used to create this UI, electron and NodeJS were chosen due to the familiarity and comfortability. Each team member has professional experience working on this framework making syntax and libraries easy to adjust to and optimize.
+
+            <h4>Expectation vs Reality</h4>
+
+            When Nick and Jason first began working on this final lab project they had initially created a large amount of requirements and tools that we would be able to implement. However, after surpassing the minimum hours required for this project weeks before it was due, the group began to realize in order to achieve the results they wanted it would take an extra semester worth of time.
+            <br>
+            The toolkit group decided to cut down requirements and deliver two useful, quality and reliable tools instead of an array of tools that were thrown together and not tested properly. This results in the toolkit only containing two tools: wave classification and data mapping.
+
+
+            <h4>DataTypes and visualization:</h4>
+            At the beginning of this project, the group agreed having a tool that would allow the user to input recorded data into a grid and have the option to visualize the data would be an extremely useful tool. The group began implementing a tool formerly known as “salinity/Depth Mapping Tool”. This tool continued to receive many revisions and additional features were added. This tool was no longer for just salinity and depth data. It could be used for any measurement that needed to be visualized. This tool allows the user to customize the table in a dynamic and intuitive way and be able to generate an interactive graph that they can adjust, move and capture for their documents and research papers.
+            <br>
+            The user needs to understand the importance of the graph types used in this tool. Heat maps are used for 2D visualization while surface plots are used for 3D visualization. It would make no sense to use a surface plot to plot salinity, however it would make sense to use a heat map for map salinity.
+
+            <h4>References</h4>
+            <ul>
+                <li>
+                    <b>Jason Giroux</b><br>
+                    Email: jgiroux776@g.rwu.edu
+
+                </li>
+                <br>
+                <li>
+                    <b>Nicholas Ferreira</b><br>
+                    Email: nferreira828@g.rwu.edu
+                </li>
+            </ul>
+
+
+        </div>
     </div>
-</nav>
-<h1>Help</h1>
-<!-- This is where instructions will be hosted for using the implemented tools -->
+
+</div>
+
+<!-- You can also require other files to run in this process -->
+<script src="./renderer.js"></script>
 </body>
 </html>

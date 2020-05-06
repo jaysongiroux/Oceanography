@@ -18,6 +18,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "electron-pdf-window": "^1.0.12",
     "electron-reload": "latest",
     "nan": "^2.14.1",
     "plotly": "^1.0.6",
