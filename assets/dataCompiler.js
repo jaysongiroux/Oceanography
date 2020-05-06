@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 // global array of input field DOM elements 
 let height = 0;
 let width = 0;
@@ -5,19 +7,50 @@ let grid = [];
 
 function LoadData() {
 
+    let z1 = [];
+
     let filePicker = document.getElementById("filePicker");
     let file = filePicker.files[0];
-    Plotly.d3.csv(file.path, function (err, rows) {
-        function unpack(rows, key) {
-            return rows.map(function (row) { return row[key]; });
+    let fileText = "";
+
+    let fileReader = new FileReader();
+    fileReader.onloadend = () => {
+        fileText = fileReader.result;
+
+        let eol = fileText.indexOf("\n");
+        let line = fileText.substr(0, eol);
+        // skip the first line
+        fileText = fileText.substr(eol + 1, fileText.length - eol);
+        while (fileText.includes("\n")) {
+            eol = fileText.indexOf("\n")
+            line = fileText.substr(0, eol);
+            fileText = fileText.substr(eol + 1, fileText.length - eol);
+            let row = [];
+            let x = line.indexOf(",");
+            // skip the first number of each line
+            line = line.substr(x + 1, line.length - x);
+            while(line.includes(",")){
+                x = line.indexOf(",");
+                row.push(parseFloat(line.substr(0, x)));
+                line = line.substr(x + 1, line.length - x);
+            }
+            row.push(parseFloat(line));
+            z1.push(row);
         }
-
-        let z1 = [];
-
-        for (i = 0; i < rows.length; i++) {
-            z1.push(unpack(rows, i));
+        line = fileText.substr(0, eol);
+        let row = [];
+        let x = line.indexOf(",");
+        // skip the first number of each line
+        line = line.substr(x + 1, line.length - x);
+        while(line.includes(",")){
+            x = line.indexOf(",");
+            row.push(parseFloat(line.substr(0, x)));
+            line = line.substr(x + 1, line.length - x);
         }
+        row.push(parseFloat(line));
+        z1.push(row);
 
+        // done parsing file
         arrayHeight = z1.length;
         if (arrayHeight == 0) {
             arrayWidth = 0;
@@ -27,15 +60,17 @@ function LoadData() {
         document.getElementById("height_input").value = arrayHeight;
         document.getElementById("width_input").value = arrayWidth;
         updateTableContainer(false);
-
+    
         for (i = 0; i < grid.length; i++) {
             for (j = 0; j < grid[0].length; j++) {
                 grid[i][j].value = z1[i][j];
                 grid[i][j].style.color = "black";
             }
         }
-    });
+    }
+    fileReader.readAsText(file);
 }
+
 function SaveFile() {
     let z1 = [];
     for (i = 0; i < grid.length; i++) {
@@ -44,8 +79,17 @@ function SaveFile() {
             z1[i][j] = grid[i][j].value;
         }
     }
-    var blob = new Blob(["Hello, world!"], { type: "text/plain;charset=utf-8" });
-    saveAs(z1);
+    let result = "";
+    for (i = 0; i < z1.length; i++) {
+        result += "," + i;
+    }
+    for (i = 0; i < z1.length; i++) {
+        result += "\n" + i;
+        for (j = 0; j < z1[0].length; j++) {
+            result += "," + z1[i][j];
+        }
+    }
+    fs.writeFileSync("assets/saved-files/FILENAME.csv", result);
 }
 function clearData() {
     for (i = 0; i < height; i++) {
