@@ -10,33 +10,37 @@
   </head>
   <body>
     <!--Menu bar initiazation -->
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#"  id="projectName" class="brand-logo" style="padding-left: 10px">Oceanography Toolbox</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="tools.html">Tools</a></li>
-          <li><a href="help.html">Help</a></li>
-        </ul>
-      </div>
-    </nav>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#"  id="projectName" class="brand-logo" style="padding-left: 10px">Oceanography Toolbox</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="help.html">Help</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-    <div class="container" style="padding-left: 40px;">
+    <div class="containerr" style="padding-left: 40px; padding-right: 40px;">
       <div class="row">
         <div class="col s12">
-          <h4 id="title">Welcome</h4>
+          <h4 id="title"><b>Welcome</b></h4>
         </div>
         <div class="col s12">
-          <h5 class="description"  id="info">Introduction</h5>
+          <h5 class="description"  id="info"><b>
+            Introduction
+          </b></h5>
           <p id="description">This tool will be used to assist oceanography researchers by giving researchers an easy, yet powerful,
             platform to enter data and output an intuitive graphs and analysis for professional documentation and research papers.
           </p>
         </div>
         <div class="divider"></div>
         <div class="col s12">
-          <h4>Tools</h4>
-          <h5>Wave Classification Tool</h5>
-          <h6>Features</h6>
+          <h4><b>Tools</b></h4>
+          <h5><b>Wave Classification Tool</b></h5>
+          <h6><b>Features</b></h6>
           <p>
             This tool allows users to record just the Depth, Period and Wave Length and it will return the classification,
             Angular Frequency, Wave number and wave velocity
@@ -48,30 +52,72 @@
             </div>
           </div>
 
-          <br>
-          <h5>Depth and Salinity Mapping tool</h5>
-          <h6>Features</h6>
-          <p>
-            This tool allows you to input recorded information into the provided grid and have it turn into a beautiful
-            visualization of your data.
 
-          </p>
-          <div class="row">
-            <div class="col s6">
-              <img id="DepthMap" class="Depthmap" label="DepthMap" src="3d.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
-              <label for="DepthMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
-            </div>
-            <div class="col s6">
-              <img id="heatMap" class="heatMap" label="heatMap" src="3dh.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
-              <label for="heatMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
-            </div>
+          <div class="row" id="tools">
+            <div class="col s12">
+              <br>
+                <h5><b>Depth and Salinity Mapping tool V1</b></h5>
+              <h6><b>Features</b></h6>
+              <p>
+                - This tool allows you to input recorded information into the provided grid and have it turn into a beautiful
+                and interactive visualization of your data.
+                <br>
+                - V1 of this tool was designed to be a quick and easy tool to record data and visualize it without any extra steps.
+
+              </p>
+
+    <!--          Images for the tools -->
+              <div class="row">
+                <div class="col s6">
+                  <img id="DepthMap" class="Depthmap" label="DepthMap" src="3d.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
+                  <label for="DepthMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+                </div>
+                <div class="col s6">
+                  <img id="heatMap" class="heatMap" label="heatMap" src="3dh.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
+                  <label for="heatMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+                </div>
+              </div>
+                <br>
+              </div>
+
+              <div class="col s12" id="v2">
+                <h5><b>Depth and Salinity Mapping tool V2</b></h5>
+              <h6><b>Features</b></h6>
+                <ul>
+                  <li>
+                    - Allows the user to manually input data on a table that can be dyanmically adjusted in size.
+                  </li>
+                  <li>
+                    - Allows the user to import a CSV File to be read and evaluated
+                  </li>
+                  <li>
+                    - Displays an interactive visual representation of the given data.
+                  </li>
+                  <li>
+                    - V2 of this tool was designed to be a more feature-rich version that allows the user to use manual entry or CSV files.
+                  </li>
+            </ul>
+
+
+              <!--          Images for the tools -->
+              <div class="row">
+                <div class="col s6">
+                  <img id="DepthMap" class="Depthmap" label="DepthMap" src="3d.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
+                  <label for="DepthMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+                </div>
+                <div class="col s6">
+                  <img id="heatMap" class="heatMap" label="heatMap" src="3dh.png" style="display:block; outline-color: black; outline-style: solid; outline-width: 5px; text-align: center; margin:auto; width: 100%"></img>
+                  <label for="heatMap" style="display: block; text-align: center; padding-top: 10px">Depth Map Visualization </label>
+                </div>
+              </div>
+
+              </div>
           </div>
-
-
         </div>
-    </div>
-    </div>
+      </div>
 
+<!--      close row-->
+    </div>
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>

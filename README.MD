@@ -1,27 +1,46 @@
-# PROJECT NAME
+# Oceanography Tool Kit
 ### Objective
-- create a computer program that allows oceanographers and researchers to enter data on a user friendly UI that will parse the data and output the visualized data into an intuitive PDF document that will be intuitive and easy to understand for the general public and other researchers
+Create a computer program that allows oceanographers and researchers to enter data
+ on a user friendly UI that will parse the data and output the visualized data into an 
+ intuitive PDF document that will be intuitive and easy to understand for the general public and other researchers
+___
 
-
-
-### Todo:
-- think about the input and outputs
-- communicate with the wet lab to determine what they use the most frequently in order to stylize it
-- think about PDF formatting, data types
-- user friendly
-- think about the types of graphs, 2D or 3D
-- water quality data -> enter data -> turned into graphs so the general public can understand it
-
-### UI:
-- sectioned off for topics/ sections for data
-
-### setup:
-npm i 
+### Setup:
+```npm i``` 
 <br>
-npm start
+```npm start```
 
-## Development
-### Tools
+___
+
+### Packaging for deployment
+```npm install electron-packager --save-dev```<br>
+```cd ..```<br>
+```electron-packager Oceanography/ OceanographyToolKit```
+<br>
+or
+<br>
+```npm i && npm run package```
+a folder will appear in the same folder the github repo is stored with the packaged program
+
+
+Documentation: https://github.com/electron/electron-packager 
+<br>
+<br>Format for custom packaging: <br>
+```electron-packager <sourcedir> <appname> --platform=<platform> --arch=<arch> [optional flags...]```
+
+___
+
+### Development 
+#### Tools
 - Add the link in the tools.html page then create a separate tool HTML and JS file. This will allow easy scalability for multiple tools in this program
 - include the navbar in each new html file you add
 
+### Information: 
+Dependencies: <br>
+    ```
+    "electron-reload": "latest",
+    "nan": "^2.14.1",
+    "plotly": "^1.0.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+    ```
