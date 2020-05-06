@@ -145,6 +145,13 @@ function updateTableContainer(focus) {
                 let td = document.createElement("td");
                 let input = document.createElement("input");
                 input.style.border = "1px solid black;";
+                if( width > 15)
+                {
+                    input.style.width = "58px";
+                }
+                else {
+                    input.style.width = "100%"
+                }
                 input.style.color = "red";
                 input.type = "text";
                 input.id = j + ", " + i;
