@@ -1,5 +1,4 @@
-const fs = require('fs');
-
+const fs = window.require('fs');
 // global array of input field DOM elements 
 let height = 0;
 let width = 0;
@@ -67,6 +66,8 @@ function LoadData() {
                 grid[i][j].style.color = "black";
             }
         }
+        let fileNameInput = document.getElementById("file_name_input");
+        fileNameInput.value = file.name;
     }
     fileReader.readAsText(file);
 }
@@ -89,7 +90,21 @@ function SaveFile() {
             result += "," + z1[i][j];
         }
     }
-    fs.writeFileSync("assets/saved-files/FILENAME.csv", result);
+    let fileNameInput = document.getElementById("file_name_input");
+    let fileName = ""
+    while(fileName === ""){
+        if(fileNameInput.value === "" || fileNameInput.value === "Please Enter a File Name."){
+            fileNameInput.value = "Please Enter a File Name.";
+        } else {
+            fileName = fileNameInput.value;
+        }
+    }
+    if(!fileName.includes(".")){
+        fileName = fileName + ".csv";
+    }
+    let path = "assets/saved-files/" + fileName;
+    fs.writeFileSync(path, result);
+    alert("data saved to " + path);
 }
 function clearData() {
     for (i = 0; i < height; i++) {
