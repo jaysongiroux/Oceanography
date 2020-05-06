@@ -102,7 +102,7 @@ function SaveFile() {
     if(!fileName.includes(".")){
         fileName = fileName + ".csv";
     }
-    let path = "assets/saved-files/" + fileName;
+    let path = fileName;
     fs.writeFileSync(path, result);
     alert("data saved to " + path);
 }
