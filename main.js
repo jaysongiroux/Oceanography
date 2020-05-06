@@ -1,7 +1,6 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 require('electron-reload')(__dirname);
-var FileSaver = require('file-saver');
 
 const path = require('path')
 
