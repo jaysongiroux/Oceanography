@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/materialize.css">
+    <script src="assets/materialize1.js"></script>
+    <script src="assets/depthSalinity.js"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="assets/plotly-latest.min.js"></script>
+
+    <title>Data Compiler</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" id="DEPTHMAP" class="brand-logo" style="padding-left: 10px">Oceanography Toolbox</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3>
+                    Data Compiler
+                </h3>
+                <P>
+                    This tool allows you to enter data points across a region and save it as a csv file. Used in
+                    conjunction with the Mapping tool,
+                    this allows you to save and modify your data over time.
+                </P>
+            </div>
+
+            <div class="con" id="con" style="display: inline">
+                <div class="col s12" style="margin-top: 100px; padding-left: 185px; text-align: left">
+
+                    <div id="fileInputContainer" class="col s3">
+                        <input id="filePicker" type="file">
+                        <div id="sub" class="col s3" style="margin-left: 60px" onclick="LoadData()">
+                            <br>
+                            <a class="waves-effect waves-light btn">Load Data</a>
+                        </div>
+                    </div>
+
+
+                    <div class="col s3" style="margin-left: 50px">
+                        <p>height: </p>
+                        <input id="height_input" onfocusout="updateTableContainer(false);" value="5"
+                            type="text"></input>
+
+                    </div>
+                    <div class="col s3">
+                        <p>width: </p>
+                        <input id="width_input" onfocusout="updateTableContainer(false);" value="5" type="text"></input>
+
+                    </div>
+                    <div id="sub" style="padding-top: 10px; text-align: left" onclick="updateTableContainer(true);">
+                        <a class="waves-effect waves-light btn">Update</a>
+                    </div>
+                </div>
+                <div class="col s9" style="margin-left: 90px;">
+                    <div id="manualInputContainer">
+                        <!--        x AXIS -->
+                        <div class="col s3">
+                            <!--        space holder-->
+                            <div class="space" style="width: 100px;"></div>
+                        </div>
+                        <div class="col s9">
+                            <h5 style="text-align: center" id="xAxis">X</h6>
+                                <div class="divider"></div>
+                        </div>
+                        <!--        Y AXIS START-->
+                        <div class="col s3">
+                            <h5 id="yAxis" style="text-align: right; margin: fill; height: 100%;">Y</h6>
+                        </div>
+
+                        <div class="col s9" id="tableContainer">
+                            <!--    TABLE APPEARS HERE-->
+                            <table id="inputTable">
+
+                            </table>
+                        </div>
+                        <div id="sub" style="margin-top: 50px; padding-left: 260px; text-align: left"
+                            onclick="clearData()">
+                            <br>
+                            <a class="waves-effect waves-light btn">Clear Data</a>
+                        </div>
+                        <div id="sub" style="margin-top: 50px; padding-left: 260px; text-align: left"
+                            onclick="SaveFile()">
+                            <br>
+                            <a class="waves-effect waves-light btn">Save Data</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+
+    // global array of input field DOM elements 
+    let height = 0;
+    let width = 0;
+    let grid = [];
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems);
+        updateTableContainer(false);
+    });
+
+    function LoadData() {
+
+        let filePicker = document.getElementById("filePicker");
+        let file = filePicker.files[0];
+        Plotly.d3.csv(file.path, function (err, rows) {
+            function unpack(rows, key) {
+                return rows.map(function (row) { return row[key]; });
+            }
+
+            let z1 = [];
+
+            for (i = 0; i < rows.length; i++) {
+                z1.push(unpack(rows, i));
+            }
+
+            arrayHeight = z1.length;
+            if (arrayHeight == 0) {
+                arrayWidth = 0;
+            } else {
+                arrayWidth = z1[0].length;
+            }
+            document.getElementById("height_input").value = arrayHeight;
+            document.getElementById("width_input").value = arrayWidth;
+            updateTableContainer(false);
+
+            for (i = 0; i < grid.length; i++) {
+                for (j = 0; j < grid[0].length; j++) {
+                    grid[i][j].value = z1[i][j];
+                    grid[i][j].style.color = "black";
+                }
+            }
+        });
+    }
+    function SaveFile() {
+        let z1 = [];
+        for (i = 0; i < grid.length; i++) {
+            z1[i] = [];
+            for (j = 0; j < grid[0].length; j++) {
+                z1[i][j] = grid[i][j].value;
+            }
+        }
+        var blob = new Blob(z1, { type: "text/plain;charset=utf-8" });
+        FileSaver.saveAs(blob);
+    }
+    function clearData() {
+        for (i = 0; i < height; i++) {
+            for (j = 0; j < width; j++) {
+                grid[i][j].value = "0";
+                grid[i][j].style.color = "black";
+            }
+        }
+    }
+
+    function updateTableContainer(focus) {
+        let valid = true;
+        let tableContainer = document.getElementById("tableContainer");
+        let newHeight = parseInt(document.getElementById("height_input").value);
+        let newWidth = parseInt(document.getElementById("width_input").value);
+        if (isNaN(newHeight) || newHeight == 0) {
+            document.getElementById("height_input").value = "please input a non-zero height."
+            valid = false;
+        }
+        if (isNaN(newWidth) || newWidth == 0) {
+            document.getElementById("height_input").value = "please input a non-zero width."
+            valid = false;
+        }
+        if (valid) {
+            let newGrid = [];
+            let oldTable = document.getElementById("inputTable");
+            let newTable = document.createElement("table");
+            newTable.id = "inputTable";
+            if (newWidth > 10) {
+                tableContainer.style = "overflow-x: scroll";
+            } else {
+                tableContainer.style = "";
+            }
+            for (i = 0; i < newHeight; i++) {
+                let row = document.createElement("tr");
+                newGrid[i] = [];
+                for (j = 0; j < newWidth; j++) {
+                    let td = document.createElement("td");
+                    let input = document.createElement("input");
+                    input.style.border = "1px solid black;";
+                    input.style.color = "red";
+                    input.type = "text";
+                    input.id = j + ", " + i;
+                    input.addEventListener("focusin", function () {
+                        input.style.color = "black";
+                        if (input.value.includes(',') || input.value.includes("invalid")) {
+                            input.value = '';
+                        }
+                    });
+                    input.addEventListener("focusout", function () {
+                        if (input.value.includes(',') || input.value.includes("invalid") || isNaN(parseFloat(input.value))) {
+                            input.style.color = "red";
+                        }
+                        if (input.value === "") {
+                            input.value = input.id;
+                        }
+                    });
+                    if (i < height && j < width) {
+                        if (grid[i][j] != null) {
+                            input.value = grid[i][j].value;
+                            if (!isNaN(parseFloat(input.value)) && !input.value.includes(","))
+                                input.style.color = "black";
+                        }
+                    } else {
+                        input.value = input.id;
+                    }
+                    td.appendChild(input);
+                    if (parseInt(input.width) < 58) {
+                        input.width = "58";
+                    }
+                    row.appendChild(td);
+                    newGrid[i][j] = input;
+                }
+                newTable.appendChild(row);
+            }
+            tableContainer.appendChild(newTable);
+            if (oldTable != null) {
+                oldTable.remove();
+            }
+            grid = newGrid;
+            height = newHeight;
+            width = newWidth;
+            if (focus) {
+                grid[0][0].focus();
+            }
+        }
+    }
+</script>
+
+</html>
