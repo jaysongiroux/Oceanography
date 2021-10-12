@@ -12,7 +12,7 @@
   "author": "Jason Giroux & Nick Ferreira",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^8.2.3",
+    "electron": "^11.5.0",
     "electron-packager": "^14.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
