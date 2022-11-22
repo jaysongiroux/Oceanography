@@ -15,7 +15,7 @@
     "electron": "^8.2.3",
     "electron-packager": "^14.2.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "electron-pdf-window": "^1.0.12",
